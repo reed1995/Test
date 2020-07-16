@@ -20,12 +20,24 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
 
-    # Runs a single command using the runners shell
-    - name: Run a one-line script
-      run: C:\windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoLogo -Sta -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -Command "& 'd:\a\_actions\actions\setup-dotnet\v1\externals\get-os-platform.ps1'"
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.300
+       
+
+    - name: Restore
+      run: dotnet restore
       
-    # Runs a single command using the runners shell
-    - name: Run a one-line script
-      run: dotnet resotre 
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.300
+       
+
+    - name: Restore
+      run: dotnet restore
+
